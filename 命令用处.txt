@@ -1,0 +1,234 @@
+
+重要目录：9大目录
+/:根目录（我的电脑）
+	/dev:device 设备目录
+	/etc:配置文件，你上班后，经常听到要修改配置
+	/home:所有的普通用户都在home下
+	/root:超级管理员所在的目录
+	/mnt:mount挂载目录
+	/tmp:temp临时文件目录，我们上班后做实验一般在这个目录下做
+	/usr:软件默认安装的目录，他就相当于c:\pro file,如果我们上班后安装某软件不指定目录，默认就在这个下
+	/var:软件的工作目录
+		/var/迅雷下载
+		/var/360download
+---------------------------------------------------------------------------------
+
+<pwd>是查看我当前所在的位置
+ 
+<ifconfig〉是查看自己的ip地址
+
+<history>是查看历史命令
+
+<ll>是展示目录中有哪些内容
+
+<man>是查看参数的 <q>是退出
+
+<cd>是目录
+
+<clear>清屏
+
+<mkdir〉是新建多个文件夹
+
+<mkdir -p>是新建文件夹下的多个文件夹
+
+<rm -rf〉是删文件夹/文件
+
+<mv>是改文件夹/文件名字  比如<mv zhong zhong1>
+
+<mv>是剪切文件夹/文件 比如<mv zhong/ /tmp/shi >
+
+<cp>是复制文件>
+
+<cp -r>是复制文件/文件夹  比如<cp -r 原目录 现目录>
+
+<find -name '文件'>是查找目录
+
+<find -name '*文件*'>是查找相关的文件名,工作中会常见
+
+查看静态文件的内容命令有很多比如：<cat more less heed tac>
+
+<more>是查看文件,工作中常用 <q>是退出
+
+<tail -f>是查看动态文件
+
+<more /proc/cpuinfo>是查看cpu
+
+<more /proc/meninfo>是查看内存
+
+<df -h〉是查看硬盘占有
+
+<du -sh *>是查看当前目录的文件文件夹所占用的值
+
+<history 〉 文件名字〉是创建新文件并保存历史命令
+
+<history >> 文件名字〉是保存到已有文件到下方
+
+----------------------------------------------------------------------------------
+
+压缩的命令
+windows：
+
+<zip -r 名 文件/文件夹〉是压缩，
+
+<unzip 包名〉是解压缩，工作中可能同事会给到zip包
+
+
+liunx：打包，解包，压缩，解压缩
+
+
+<tar cvf 取名 文件/文件夹〉是打包
+
+<tar xvf 包名〉是解包
+
+<tar -tf 包名>是查看包里的内容
+
+<tar -rf 包名 文件/文件夹〉是追加东西到包里
+
+<gzip 包〉是压缩
+
+<gunzip 压缩包〉是解压缩
+
+<tar zcvh 名.tar .gz 文件/文件夹〉是边打包边压缩
+
+<tar zxvh 名.tar .gz>是解压缩
+
+----------------------------------------------------------------------------------
+
+进程管理必会的内容：查，杀
+
+<ps -ef> 是查看进程
+
+<top>是查看实时进程 <ctrl+c>是强制退出
+
+<ps -ef | grep 进程名〉是查看单个进程，提醒一个的话是没有的意思。
+
+<who>是查看当前开启的用户
+
+<pkill 进程名/killall 进程名>是杀全部进程号。不知道进程可以问同事
+
+试用开启进程：service（httpd) start   括号里的httpd就是进程。可变
+
+杀单个流程：<ps -ef>， <who>，<pill -9 22943〉
+
+试用杀全部进程号流程：service（httpd) start ， ps -ef | grep（进程名），pkill 进程名
+
+----------------------------------------------------------------------------------
+
+以下部分是超管需要了解的内容。
+
+<su>是切换当前用户  
+
+<su ->是普通用户切换超管用户
+                                                                
+<adduser/useradd>是添加用户，2个命令都可以
+
+<passwd 用户名>是添加用户密码，需要输入2遍密码
+
+<userdel>是删除用户
+
+<groupadd>是添加用户组名
+
+<groupdel>是删除用户组名
+
+<more /etc/passwd>是查看用户文件
+
+<more /etc/group>是查看用户组文件
+
+<chown 用户名 文件/文件夹〉是更改所属用户
+
+<chgrp 用户组名 文件/文件夹>是更改用户组
+
+<chmod 777 文件/文件夹〉是权限给予 分别是4是r 2是w 1使x - 是0 rwx为一组
+
+--------------------------------------------------------------------------------------
+安装包的3种安装
+
+1、rpm：
+<rpm -ivh 安装包名>是安装安装包的，不过rpm有些需要包依赖。
+
+<rpm -qi 安装包名>是显示安装包的相关信息
+
+<rpm -ql 安装包名>是显示安装后的行为
+
+<rpm -qa | grep 安装包名>是查看是否安装了某个包
+
+<rpm -e 安装包名>是卸载安装包
+
+
+2、yum：
+
+<yum -y install 软件名〉即可
+
+1、需要联网  2、有可能需要切源，比较好的是阿里云，需要学习如何切源
+
+--------------------------------------------------------------------------------------
+
+3、源码安装：
+	1、cd /usr/local
+	2、mkdir nginx
+	3、wget https://nginx.org/download/nginx-1.9.9.tar.gz
+		wget 是一个从网络上自动下载文件的自由工具
+	4、tar zxvf nginx-1.9.9.tar.gz
+	5、cd nginx-1.9.9
+	6、./configure --prefix=/usr/local/nginx/ --with-http_ssl_module
+		1、生成Makefile文件
+		2、./configure --help可以查看帮助
+	7、make
+		1、各种no，编译不通过
+		2、yum -y install gcc gcc-c++ autoconf automake
+		3、yum -y install zlib zlib-devel openssl openssl-devel pcre pcre-devel
+		4、make，其实还不通过
+		5、要删除Makefile文件
+		6、重新./configure操作，然后再make
+	8、make install
+        9 cd /usr/local/nginx/sbin
+       10 ./nginx
+
+测试：
+	1、关闭防火墙：service iptables stop
+	2、打开浏览器,http://linux的ip
+
+--------------------------------------------------------------------------------------
+4、tomcat是什么？
+	web服务器，中间件
+
+企业为什么开发java的web项目时喜欢用tomcat？
+	小巧，性能好，免费，开源，和各种其他项目整个很方便
+
+
+1、安装
+	1、上传上对应的tomcat的软件包
+	2、tar zxvf apache-tomcat....tar.gz
+	3、cp apache-tomcat.... /usr/java
+	4、cd /usr/java/apache-tomcat.../bin
+	5、./startup.sh
+	6、service iptables stop
+
+2、测试
+	打开chrome，输入http://linux的ip:8080
+
+
+3、学会看tomcat的日志
+	1、重新打开一个putty，进入tomcat的logs目录:cd /usr/java/apache-tomcat.../logs
+	2、tail -f catalina.out，即可打开日志
+	3、在另外一个putty中，不断的进行开或关tomcat，监控日志文件，会发现不断的在实时打印日志内容
+
+4、学习tomcat的重要目录
+	bin：开关tomcat的脚本目录
+	logs：日志目录
+	conf：配置文件目录  server.xml中就有8080 （67行附近）
+	webapps：应用程序存放目录
+
+
+ 作业：案例：nginx
+	周末完全对nginx的理解
+		代理、正向代理、反向代理
+		微服务架构（spring could）
+		负载均衡、动静分离
+
+
+只要你写对路径就能做你要的一切且不局限于当前位置（好处：不用来回切路径）
+
+比如<cp /etc/httpd/conf/httpd.conf /tmp>
+
+
